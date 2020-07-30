@@ -1,6 +1,6 @@
 ###################
 # PARAMETERS TO MODIFY
-IMAGE_NAME = image_name
+IMAGE_NAME = statinference
 IMAGE_TAG = 1.0
 ###################
 # FIXED PARAMETERS

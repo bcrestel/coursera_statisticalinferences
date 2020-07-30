@@ -1,5 +1,7 @@
-# template_repo
-Template repo for miscellaneous ML project
+# Statistical Inference
+Repository containing homeworks for Coursera's course 
+[Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/home/welcome).
+
 
 
 ## Usage
