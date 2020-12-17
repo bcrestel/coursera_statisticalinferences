@@ -3,18 +3,28 @@
 # Copyright (c) 2020 Element AI. All rights reserved.
 
 from typing import Tuple
+
 import numpy as np
 from scipy.stats import norm, t
 
 from simulations import simulate_normal
 
-class CIOverlap():
 
+class CIOverlap:
     @staticmethod
-    def generate_data(means: Tuple[float, float], std: Tuple[float, float], sample_size: int):
+    def generate_data(
+        means: Tuple[float, float], std: Tuple[float, float], sample_size: int
+    ):
         data = []
         for mean, std in zip(means, std):
-            data.append(simulate_normal(sample_mean=mean, sample_std=std, sample_size=sample_size, number_simulations=1).flatten())
+            data.append(
+                simulate_normal(
+                    sample_mean=mean,
+                    sample_std=std,
+                    sample_size=sample_size,
+                    number_simulations=1,
+                ).flatten()
+            )
 
         data = np.array(data)
         return data
@@ -36,7 +46,7 @@ class CIOverlap():
         deviation_high = norm.ppf(quantile_high)
         quantile_low = typeIerr * 0.5
         deviation_low = norm.ppf(quantile_low)
-        #print(quantile_low, quantile_high)
+        # print(quantile_low, quantile_high)
 
         ci_high = mean + deviation_high * se
         ci_low = mean + deviation_low * se
@@ -47,15 +57,22 @@ class CIOverlap():
 
         # CI for the difference
         mean_diff = mean[1] - mean[0]
-        se_diff = np.sqrt(std[0]**2 / nb_samples + std[1]**2 / nb_samples)
-        deviation_diff_high = t.ppf(quantile_high, df=2*nb_samples-2)
-        deviation_diff_low = t.ppf(quantile_low, df=2*nb_samples-2)
-        CIs.append([mean_diff + deviation_diff_low*se_diff, mean_diff + deviation_diff_high*se_diff])
-        #print(deviation_diff_low, deviation_diff_high)
+        se_diff = np.sqrt(std[0] ** 2 / nb_samples + std[1] ** 2 / nb_samples)
+        deviation_diff_high = t.ppf(quantile_high, df=2 * nb_samples - 2)
+        deviation_diff_low = t.ppf(quantile_low, df=2 * nb_samples - 2)
+        CIs.append(
+            [
+                mean_diff + deviation_diff_low * se_diff,
+                mean_diff + deviation_diff_high * se_diff,
+            ]
+        )
+        # print(deviation_diff_low, deviation_diff_high)
 
         return CIs
 
-    def run(self, means: Tuple[float, float], std: Tuple[float, float], sample_size: int):
+    def run(
+        self, means: Tuple[float, float], std: Tuple[float, float], sample_size: int
+    ):
         self.means = means
         self.std = std
         self.sample_size = sample_size

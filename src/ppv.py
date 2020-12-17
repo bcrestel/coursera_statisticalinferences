@@ -5,7 +5,10 @@ from typing import Dict
 
 
 def calculate_ppv(
-    percentage_experiments_H1true: float, alpha_level: float, power: float, p_hacking_ratio: float = 0.0
+    percentage_experiments_H1true: float,
+    alpha_level: float,
+    power: float,
+    p_hacking_ratio: float = 0.0,
 ) -> Dict[str, float]:
     """
     Calculate the Positive Predictive Value (PPV) of a p-value
