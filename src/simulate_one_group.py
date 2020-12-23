@@ -1,0 +1,28 @@
+# simulate_one_group.py
+# Benjamin Crestel, 2020-12-22
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.stats import norm
+
+from simulations import simulate_normal
+
+
+def simulate_one_group(number_samples):
+    """
+    Generate samples of IQ tests and plot
+
+    :param number_samples: number of samples
+    :return: samples and axes of the plot
+    """
+    samples = simulate_normal(
+        sample_mean=100, sample_std=15, sample_size=number_samples, number_simulations=1
+    )
+    fig, ax = plt.subplots(1, 1)
+    bounds = samples.min() - 10.0, samples.max() + 10.0
+    ax.hist(samples, range=bounds)
+
+    ax2 = ax.twinx()
+    xx = np.linspace(bounds[0], bounds[1], 100)
+    ax2.plot(xx, norm(100, 15).pdf(xx), "--r")
+    return samples, (ax, ax2)
