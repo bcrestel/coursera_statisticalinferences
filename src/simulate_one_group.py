@@ -29,8 +29,8 @@ def simulate_one_group(number_samples: int, mean: float = 100.0, std: float = 15
     bounds = samples.min() - 10.0, samples.max() + 10.0
     ax.hist(samples, range=bounds)
 
-    plt.text(100, 1.5, f"mean = {samples_mean:.2f}")
-    plt.text(100, 1.0, f"std = {samples_std:.2f}")
+    plt.text(100, 0.15 * number_samples, f"mean = {samples_mean:.2f}")
+    plt.text(100, 0.1 * number_samples, f"std = {samples_std:.2f}")
 
     ax2 = ax.twinx()
     xx = np.linspace(bounds[0], bounds[1], 100)
