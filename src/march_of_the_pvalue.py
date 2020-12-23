@@ -13,6 +13,7 @@ def march_of_the_pvalue(number_simulations: int, mean_diff: float, sample_size: 
 
     :param number_simulations: number of simulations to run
     :param mean_diff: difference between the means of both population
+    :param sample_size: number of samples in each population
     :return:
     """
     # Run all t-tests
