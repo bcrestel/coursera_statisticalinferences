@@ -2,9 +2,9 @@
 #This code is for a one-sided t-test, testing a difference against 0.
 
 N <- 100 #Enter sample size
-dz <- 0.25 #Enter Cohen's dz effect size observed in the dependent t-test or one-sided t-test
+dz <- -0.015 #Enter Cohen's dz effect size observed in the dependent t-test or one-sided t-test
 
-dz_prior <- 0.32 #Enter effect size dz for the prior
+dz_prior <- 0.09 #Enter effect size dz for the prior
 sd_prior <- 0.2 #Enter sd of the effect sizes of the prior - the higher, the wider the prior is
 
 lo <- -Inf #lower bound of support (e.g., set to 0 if effects < 0 is not possible)
