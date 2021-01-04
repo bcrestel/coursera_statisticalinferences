@@ -110,7 +110,11 @@ class GPower:
         return power
 
     def run_twogroup_indep_ttest2(
-            self, mean_diff: float, cohen_effect_size: float, alpha_level: float, target_power: float
+        self,
+        mean_diff: float,
+        cohen_effect_size: float,
+        alpha_level: float,
+        target_power: float,
     ) -> int:
         """
         Power analysis for two-group independent t-test
@@ -141,8 +145,8 @@ class GPower:
             alpha_level=alpha_level,
         )
         while (
-                np.abs(power_low - power_up) > tolerance
-                and np.diff(sample_size_bounds).item() > 1.0
+            np.abs(power_low - power_up) > tolerance
+            and np.diff(sample_size_bounds).item() > 1.0
         ):
             sample_size_mid = self._get_mid_sample_size(
                 sample_size_bounds=sample_size_bounds
@@ -162,7 +166,7 @@ class GPower:
 
     @staticmethod
     def power_twogroup_indep_ttest2(
-            mean_diff: float, sample_size: int, cohen_effect_size: float, alpha_level: float
+        mean_diff: float, sample_size: int, cohen_effect_size: float, alpha_level: float
     ) -> float:
         """
         Compute power of two-group independent t-test (2 tails)
@@ -185,11 +189,11 @@ class GPower:
         return power
 
     def powers_twogroup_indep_ttest2(
-            self,
-            mean_diff: float,
-            sample_size_bounds: Tuple[int],
-            cohen_effect_size: float,
-            alpha_level: float,
+        self,
+        mean_diff: float,
+        sample_size_bounds: Tuple[int],
+        cohen_effect_size: float,
+        alpha_level: float,
     ):
         power_low = self.power_twogroup_indep_ttest2(
             mean_diff=mean_diff,
@@ -204,4 +208,3 @@ class GPower:
             alpha_level=alpha_level,
         )
         return power_low, power_up
-
